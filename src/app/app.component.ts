@@ -27,13 +27,9 @@ export class AppComponent {
   public dinosaurs:IDinoEvent[] = [];
 
   constructor(private dinoService:DinoStatusService) {
-    // this.xTicks = this.xSeed.split("");
-    // this.currentDate = moment().format("D MMMM YYYY");
     this.xAxisTicks = this.xSeed.split("");
-    // this.buildGridModel();
     this._buildGridMap();
     this.dinoService.dinoFeed.subscribe((data) => {
-      // this.processLog(data)
       this._process(data);
     });
   }
@@ -117,92 +113,4 @@ export class AppComponent {
       delete gridEntry.dino;
     }
   }
-
-  // Below is wrong way of doing it.
-  // public xSeed = 'abcdefghijklmnopqrstuvwxyz';
-  // public ySeed = 16;
-  // public dinos:IDinoEvent[] = [];
-
-  // public modelFlatMap: Partial<{
-  //   [name: string]: {
-  //     safe: "safe" | "unsafe" | "meh",
-  //     maintanence: boolean;
-  //     dinoId?: number;
-  //   };
-  // }> = {};
-
-  
-
-  // public buildGridModel = () => {
-  //   _.forEach(this.xAxisTicks, (alpha) => {
-  //     _.forEach(this.yAxisTicks, (num) => {
-  //       this.modelFlatMap[`${alpha}${num}`] = {
-  //         safe: "meh",
-  //         maintanence: null,
-  //       }
-  //     })
-  //   })
-  // }
-
-  // public processLog = (data:IDinoEvent[]) => {
-  //   this.dinos = data.map((e) => {if(e.kind == "dino_added") return e;}).filter((e) => e != null);
-  //   const sorted = data.sort((e1, e2) =>  moment(e1.time).valueOf() - moment(e2.time).valueOf());
-
-  //   _.forEach(sorted, (event: IDinoEvent) => {
-  //     if (event.kind == "dino_location_updated") this._dinoLocationHandler(event);
-  //     if (event.kind == "dino_removed") this._dinoRemovedHandler(event);
-  //     if (event.kind == "dino_fed") this._dinoFedHandler(event);
-  //     if (event.kind == "maintenance_performed") this._maintenanceHandler(event);
-  //   });
-  // }
-
-  // private _dinoLocationHandler(event: IDinoEvent) {
-  //   _.forEach(this.modelFlatMap, (map, i) => {
-  //     if (map.dinoId == event.dinosaur_id) {
-  //       delete map.dinoId;
-  //       map.safe = "meh";
-  //     }
-  //     if (i == event.location.toLocaleLowerCase()) {
-  //       map.dinoId = event.dinosaur_id;
-  //       map.safe = "unsafe";
-  //     }
-  //   });
-  //   this.modelFlatMap[event.location.toLocaleLowerCase()].dinoId = event.dinosaur_id;
-  // }
-
-  // private _dinoRemovedHandler(event: IDinoEvent) {
-  //   _.forEach(this.modelFlatMap, (map) => {
-  //     if (map.dinoId == event.dinosaur_id) {
-  //       delete map.dinoId;
-  //       map.safe = "meh";
-  //     }
-  //   });
-  // }
-  
-  // private _dinoFedHandler(event: IDinoEvent) {
-  //   const hoursPastFed = moment().diff(moment(event.time), 'hours');
-  //   const dino:IDinoEvent = _.find(this.dinos, (o) => o.id == event.dinosaur_id);
-  //   _.forEach(this.modelFlatMap, (map, i) => {
-  //     if (map.dinoId == event.dinosaur_id) {
-  //       if (hoursPastFed < dino.digestion_period_in_hours || dino.herbivore) {
-  //         map.safe = "safe";
-  //         return;
-  //       }
-  //       if (hoursPastFed > dino.digestion_period_in_hours || !dino.herbivore) {
-  //         map.safe = "unsafe";
-  //         return;
-  //       }
-  //       map.safe = "meh";
-  //     }
-  //   });
-  // }
-
-  // private _maintenanceHandler(event: IDinoEvent) {
-  //   const daysPastMaint = moment().diff(moment(event.time), 'days');
-  //   if (daysPastMaint >= 30) {
-  //     this.modelFlatMap[event.location.toLocaleLowerCase()].maintanence = true;
-  //   } else {
-  //     this.modelFlatMap[event.location.toLocaleLowerCase()].maintanence = false;
-  //   }
-  // }
 }
