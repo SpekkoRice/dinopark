@@ -1,0 +1,70 @@
+.logo {
+  width: 25vw;
+  margin: 5vh auto 5vh 2vw;
+  img {
+    width: 100%;
+  }
+}
+
+.need-maintanence {
+  width: 50%;
+  margin: auto;
+}
+
+.safe {
+  background-color: #51B687
+}
+
+.unsafe {
+  background-color: red;
+}
+
+.zone-container {
+  width: 70%;
+  margin: auto;
+  margin-top: 10vh;
+  padding-bottom: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px 1px #c4c4c4;
+  .header-row {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    padding: 20px;
+    .zone-header {
+      margin: auto;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bolder;
+    }
+    .date {
+      text-align: right;
+      margin: auto;
+      color: #b4b6bc;
+    }
+  }
+  .grid {
+    margin: auto;
+    width: 90%;
+    table {
+      width: 100%;
+      table-layout: fixed;
+    }
+    .grid-system {
+      color: #b4b6bc;
+      td {
+        text-align: center; 
+        vertical-align: middle;
+        width: 100%;
+        border: 1px solid #b4b6bc;
+      }
+      .y-tick {
+        border: none;
+      }
+      .x-tick {
+        border: none;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

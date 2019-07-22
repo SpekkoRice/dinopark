@@ -1,0 +1,36 @@
+
+<div class="logo">
+  <img src="assets/dinoparks-logo.png" />
+</div>
+
+<div class="zone-container">
+  <div class="row header-row">
+    <div class="col-lg-6 zone-header">
+      <h1>Park Zones</h1>
+    </div>
+    <div class="col-lg-6 zone-header date">
+      <h3>{{ currentDate }}</h3>
+    </div>
+  </div>
+  <div class="grid">
+    <table class="grid-system">
+      <tbody>
+        <tr *ngFor="let y of yAxisTicks">
+          <td class="y-tick">{{y}}</td>
+          <ng-template ngFor let-x [ngForOf]="xAxisTicks" let-i="index" [ngForTrackBy]="trackByFn">
+            <td [ngClass]="{
+              'safe': safetyFeasability(x + '' + y) == 'safe',
+              'unsafe': safetyFeasability(x + '' + y) == 'unsafe'
+            }">
+              <img *ngIf="requiresMaintenance(x + '' + y)" src="assets/dino-parks-wrench.png" class="need-maintanence" />
+            </td>
+          </ng-template>
+        </tr>
+        <tr>
+            <td class="x-tick"></td>
+            <td *ngFor="let x of xAxisTicks" class="x-tick">{{ x }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
