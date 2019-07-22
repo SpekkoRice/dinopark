@@ -24,13 +24,20 @@ export class AppComponent {
   public currentDate: string;
 
   public gridMap: Array<IGridEntry> = [];
-  public dinosaurs:IDinoEvent[] = [];
+  public dinosaurs: IDinoEvent[] = [];
+
+  public nDinosaurs: IDinoEvent[] = [];
+  public nGridMap: Array<IGridEntry> = [];
 
   constructor(private dinoService:DinoStatusService) {
     this.xAxisTicks = this.xSeed.split("");
     this._buildGridMap();
     this.dinoService.dinoFeed.subscribe((data) => {
       this._process(data);
+    });
+
+    this.dinoService.dinoAdded.subscribe((dino) => {
+      // this.dinosaurs.push(dino);
     });
   }
 
